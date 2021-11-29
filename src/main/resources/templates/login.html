@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:insert="index::encabezado">
+
+</head>
+<body>
+
+	<nav th:insert="index::navbar"></nav>
+	
+	<div th:if="${session.userLoggedIn == null}">
+		<div class="alert alert-danger" role="alert">
+  			Usuario/Password no valido
+		</div>
+	</div>
+
+	
+	Iniciar sesion
+	
+	<form th:action="@{/usuario/login}" method="post">
+		<input type="text" name="correo">
+		<input type="password" name="contrasenia">
+		<input type="submit" value="Iniciar">
+	</form>
+	
+	<th:block th:insert="index::script"></th:block>
+</body>
+</html>
