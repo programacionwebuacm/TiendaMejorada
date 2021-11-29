@@ -26,9 +26,18 @@ public class UsuarioServiceImpl implements UsuarioService {
 		if(log.isDebugEnabled())
 			log.debug("> Entrando a UsuarioServiceImpl.obtenerUsuarioPorCorreoYContrasenia()");
 		
-		contrasenia = passwordEncoder.encode(contrasenia);
+		Usuario usuarioRecuperado = usuarioRepository.findByCorreo(correo);
 		
-		return usuarioRepository.findByCorreoAndContrasenia(correo, contrasenia);
+		log.debug("usuario recuperado: " + usuarioRecuperado);
+		
+		if(usuarioRecuperado != null && passwordEncoder.matches(contrasenia, usuarioRecuperado.getContrasenia())) {
+			
+			return usuarioRecuperado;
+		} else {
+			
+			return null;
+		}
+
 	}
 
 }

@@ -30,11 +30,11 @@ public class UsuarioController {
 		Usuario usuario = usuarioService.obtenerUsuarioPorCorreoYContrasenia(correo, password);
 		
 		if(usuario != null) {
-			httpSession.setAttribute("userLoggedIn", usuario);
+			httpSession.setAttribute("usuarioLogueado", usuario);
 			
 		} else {
 			model.addAttribute("error", "Usuario/Contrasenia no validos");
-			return "redirect:/login";
+			return "login::#contenedor";
 		}
 		
 		return "redirect:/home";
@@ -43,7 +43,7 @@ public class UsuarioController {
 	@GetMapping("/logout")
 	public String logout() {
 		
-		httpSession.removeAttribute("userLoggedIn");
+		httpSession.removeAttribute("usuarioLogueado");
 		
 		return "redirect:/";
 	}

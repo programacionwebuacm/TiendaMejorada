@@ -6,23 +6,32 @@
 </head>
 <body>
 
-	<nav th:insert="index::navbar"></nav>
-	
-	<div th:if="${session.userLoggedIn == null}">
-		<div class="alert alert-danger" role="alert">
-  			Usuario/Password no valido
+	<div id="contenedor">
+		<nav th:insert="index::navbar"></nav>
+
+		<div th:if="${error != null}">
+			<div class="alert alert-danger alert-dismissible fade show"
+				role="alert">
+				<strong>Usuario/Password no valido</strong>
+				 <button type="button" class="btn-close" 
+				 data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+
 		</div>
+
+
+		Iniciar sesion
+
+		<!-- <form th:action="@{/usuario/login}" method="post"> -->
+		<input id="correo" type="text" name="correo"> <input
+			id="password" type="password" name="contrasenia"> <input
+			id="boton" type="button" value="Iniciar"
+			th:onclick="iniciarSesion();">
+		<!--  </form>-->
+
 	</div>
 
-	
-	Iniciar sesion
-	
-	<form th:action="@{/usuario/login}" method="post">
-		<input type="text" name="correo">
-		<input type="password" name="contrasenia">
-		<input type="submit" value="Iniciar">
-	</form>
-	
+
 	<th:block th:insert="index::script"></th:block>
 </body>
 </html>
