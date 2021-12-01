@@ -9,12 +9,12 @@
 	<div id="contenedor">
 		<nav th:insert="index::navbar"></nav>
 
-		<div th:if="${error != null}">
+		<div th:if="${errorMensaje != null}">
 			<div class="alert alert-danger alert-dismissible fade show"
 				role="alert">
-				<strong>Usuario/Password no valido</strong>
-				 <button type="button" class="btn-close" 
-				 data-bs-dismiss="alert" aria-label="Close"></button>
+				<strong>[[${errorMensaje}]]</strong>
+				<button type="button" class="btn-close" data-bs-dismiss="alert"
+					aria-label="Close"></button>
 			</div>
 
 		</div>
@@ -22,16 +22,31 @@
 
 		Iniciar sesion
 
-		<!-- <form th:action="@{/usuario/login}" method="post"> -->
-		<input id="correo" type="text" name="correo"> <input
-			id="password" type="password" name="contrasenia"> <input
-			id="boton" type="button" value="Iniciar"
-			th:onclick="iniciarSesion();">
-		<!--  </form>-->
+		<form id="forma-login" th:action="@{/usuario/login}" method="post">
+
+			<div class="card" style="width: 18rem;">
+				<div class="card-body">
+					<div class="form-label-group">
+						<input id="correo" type="text" name="correo" class="form-control">
+						<label for="correo"></label>
+					</div>
+
+
+					<div class="form-label-group">
+						<input id="password" type="password" name="password"
+							class="form-control"> <label for="password"></label>
+					</div>
+					<input id="boton" type="submit" value="Iniciar">
+				</div>
+			</div>
+		</form>
 
 	</div>
 
 
 	<th:block th:insert="index::script"></th:block>
+	<script
+		th:src="@{webjars/jquery-validation/1.19.3/jquery.validate.min.js}"
+		type="text/javascript"></script>
 </body>
 </html>

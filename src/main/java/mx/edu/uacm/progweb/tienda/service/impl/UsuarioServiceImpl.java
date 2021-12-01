@@ -21,16 +21,19 @@ public class UsuarioServiceImpl implements UsuarioService {
 	/**
 	 * {@link mx.edu.uacm.progweb.tienda.service.UsuarioService#obtenerUsuarioPorCorreoYContrasenia(String, String)}
 	 */
-	public Usuario obtenerUsuarioPorCorreoYContrasenia(String correo, String contrasenia) {
+	public Usuario obtenerUsuarioPorCorreoYContrasenia(String correo, String contraseniaPlana) {
 		
 		if(log.isDebugEnabled())
 			log.debug("> Entrando a UsuarioServiceImpl.obtenerUsuarioPorCorreoYContrasenia()");
+		
+		//--> incorrecto contrasenia = passwordEncoder.encode(contrasenia);
+		//Usuario usuarioRecuperado = usuarioRepository.findByCorreoAndContrasenia(correo, contrasenia);
 		
 		Usuario usuarioRecuperado = usuarioRepository.findByCorreo(correo);
 		
 		log.debug("usuario recuperado: " + usuarioRecuperado);
 		
-		if(usuarioRecuperado != null && passwordEncoder.matches(contrasenia, usuarioRecuperado.getContrasenia())) {
+		if(usuarioRecuperado != null && passwordEncoder.matches(contraseniaPlana, usuarioRecuperado.getContrasenia())) {
 			
 			return usuarioRecuperado;
 		} else {

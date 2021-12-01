@@ -33,7 +33,7 @@ public class UsuarioController {
 			httpSession.setAttribute("usuarioLogueado", usuario);
 			
 		} else {
-			model.addAttribute("error", "Usuario/Contrasenia no validos");
+			model.addAttribute("errorMensaje", "Usuario/Contrasenia no validos");
 			return "login::#contenedor";
 		}
 		
