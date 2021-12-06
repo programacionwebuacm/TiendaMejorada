@@ -6,47 +6,61 @@
 </head>
 <body>
 
-	<div id="contenedor">
-		<nav th:insert="index::navbar"></nav>
 
-		<div th:if="${errorMensaje != null}">
-			<div class="alert alert-danger alert-dismissible fade show"
-				role="alert">
-				<strong>[[${errorMensaje}]]</strong>
-				<button type="button" class="btn-close" data-bs-dismiss="alert"
-					aria-label="Close"></button>
+
+	<nav th:insert="index::navbar"></nav>
+
+	<div id="contenedor" class="container">
+		<div class="row">
+			<!-- renglon -->
+
+			<div class="col-sm-4 mx-auto">
+				<!-- columna -->
+
+				<!--  <div th:if="${errorMensaje != null}">-->
+					<div th:if="${#servletContext.getAttribute('errorMensaje') != null}">
+					<div class="alert alert-danger alert-dismissible fade show"
+						role="alert">
+						<!--  <strong>[[${errorMensaje}]]</strong> -->
+						<strong>[[${#servletContext.getAttribute('errorMensaje')}]]</strong>
+						<button type="button" class="btn-close" data-bs-dismiss="alert"
+							aria-label="Close"></button>
+					</div>
+
+				</div>
+				
+
+
+
+				Iniciar sesion
+
+				<form id="forma-login" th:action="@{/usuario/login}" method="post">
+
+					<div class="card">
+						<div class="card-body">
+							<div class="form-label-group">
+								<input id="correo" type="text" name="correo"
+									class="form-control"> <label for="correo"></label>
+							</div>
+
+
+							<div class="form-label-group">
+								<input id="contrasenia" type="password" name="contrasenia"
+									class="form-control"> <label for="contrasenia"></label>
+							</div>
+							<input id="boton" type="submit" class="btn btn-primary" value="Iniciar">
+						</div>
+					</div>
+				</form>
+
+
 			</div>
 
 		</div>
-
-
-		Iniciar sesion
-
-		<form id="forma-login" th:action="@{/usuario/login}" method="post">
-
-			<div class="card" style="width: 18rem;">
-				<div class="card-body">
-					<div class="form-label-group">
-						<input id="correo" type="text" name="correo" class="form-control">
-						<label for="correo"></label>
-					</div>
-
-
-					<div class="form-label-group">
-						<input id="password" type="password" name="password"
-							class="form-control"> <label for="password"></label>
-					</div>
-					<input id="boton" type="submit" value="Iniciar">
-				</div>
-			</div>
-		</form>
 
 	</div>
 
 
 	<th:block th:insert="index::script"></th:block>
-	<script
-		th:src="@{webjars/jquery-validation/1.19.3/jquery.validate.min.js}"
-		type="text/javascript"></script>
 </body>
 </html>

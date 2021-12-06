@@ -8,7 +8,7 @@ var iniciarSesion = function() {
 	
 
 	var email = $("#correo").val();
-	var password = $("#password").val();
+	var password = $("#contrasenia").val();
 
 	
 	$.post("/usuario/login", { 'correo': email, 'contrasenia': password }, /*callback*/ function( fragmento ) {
@@ -44,15 +44,14 @@ $(document).ready(function () {
         min: jQuery.validator.format("Por favor, escribe un valor mayor o igual a {0}.")
     });
 	
-	$("#forma-login").validate({
+	/*$("#forma-login").validate({
 	rules: {
 		correo: {
 			required: true,
 			maxlength: 100
 		},
-		password: {
-			required: true,
-			sololetrasyespacios:true
+		contrasenia: {
+			required: true
 		}
 	},
 	errorPlacement: function(error, element) {
@@ -62,8 +61,44 @@ $(document).ready(function () {
 		form.submit();
 	}
 
-});
+	});*/
+	
+	/* una peticion via AJAX 
+	$("#forma-login").submit(function(e) {
+		
+		e.preventDefault();
+		
+	}).validate({
+	rules: {
+		correo: {
+			required: true,
+			maxlength: 100
+		},
+		contrasenia: {
+			required: true
+		}
+	},
+	errorPlacement: function(error, element) {
+		error.appendTo(element.parent());
+	},
+	submitHandler: function(form) {
+		
+		var email = $("#correo").val();
+		var password = $("#contrasenia").val();
+
+		
+		$.post("/usuario/login", { 'correo': email, 'contrasenia': password },  function( fragmento ) {
+			
+				console.log(fragmento);
+			
+	 			
+		});
+		
+		return false;
+	}
+
+	});
 
     
     
-   });
+   });*/
