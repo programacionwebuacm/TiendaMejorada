@@ -63,7 +63,7 @@ $(document).ready(function () {
 
 	});*/
 	
-	/* una peticion via AJAX 
+	//una peticion via AJAX 
 	$("#forma-login").submit(function(e) {
 		
 		e.preventDefault();
@@ -88,8 +88,10 @@ $(document).ready(function () {
 
 		
 		$.post("/usuario/login", { 'correo': email, 'contrasenia': password },  function( fragmento ) {
-			
-				console.log(fragmento);
+
+				var newDoc = document.open("text/html", "replace");
+				newDoc.write(fragmento);
+				newDoc.close();
 			
 	 			
 		});
@@ -101,4 +103,4 @@ $(document).ready(function () {
 
     
     
-   });*/
+   });
