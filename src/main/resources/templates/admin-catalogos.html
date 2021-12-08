@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:insert="index::encabezado">
+
+</head>
+<body>
+	<nav th:insert="home::navbar"></nav>
+	<br>
+	<br>
+	<div id="contenedor" class="container">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="input-group mb-3">
+						<input type="text" class="form-control" placeholder="Buscar"
+							aria-label="Buscar" aria-describedby="basic-addon2"> <span
+							class="input-group-text" id="basic-addon2">buscar</span>
+					</div>
+				</div>
+				<div class="col">
+					<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar</button>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">Nombre</div>
+				<div class="col">Clave</div>
+				<div class="col">Precio</div>
+				<div class="col">Cantidad</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Agregar Producto</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<form id="agregar-prod-forma" th:action="@{/producto/guardar}" method="post">
+					<input type="text" class="form-control" placeholder="nombre producto"
+							aria-label="nombre producto" aria-describedby="basic-addon2" id="nombre" name="nombre">
+					<input type="text" class="form-control" placeholder="clave"
+							aria-label="clave" aria-describedby="basic-addon2" id="clave" name="clave">
+					<input type="text" class="form-control" placeholder="precio"
+							aria-label="precio" aria-describedby="basic-addon2" id="precio" name="precio">
+					<input type="text" class="form-control" placeholder="cantidad"
+							aria-label="cantidad" aria-describedby="basic-addon2" id="cantidad" name="cantidad">
+					
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">Cancelar</button>
+					<input type="submit" class="btn btn-primary" value="Guardar"></button>
+				</div>
+				</form>
+			</div>
+		</div>
+	</div>
+		<th:block th:insert="index::script"></th:block>
+</body>
+</html>
