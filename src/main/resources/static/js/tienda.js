@@ -100,7 +100,81 @@ $(document).ready(function () {
 	}
 
 	});
+	
+	//una peticion via AJAX 
+	$("#agregar-prod-forma").submit(function(e) {
+		
+		e.preventDefault();
+		
+	}).validate({
+	rules: {
+		nombre: {
+			required: true
+			
+		},
+		clave: {
+			required: true,
+			digits:true
+		},
+		precio:{
+			required:true
+		},
+		cantidad:{
+			required:true,
+			digits:true
+		}
+		
+	},
+	errorPlacement: function(error, element) {
+		error.appendTo(element.parent());
+	},
+	submitHandler: function(form) {
+		
+		var name = $("#nombre").val();
+		var clave = $("#clave").val();
+		var precio = $("#precio").val();
+		var cantidad = $("#cantidad").val();
 
+		
+		$.post("/producto/guardar", 
+		{ 'nombre': name, 
+		'clave': clave, 
+		'precio': precio, 
+		'cantidad': cantidad},  function( fragmento ) {
+
+				
+				$('#modalMensaje').replaceWith(fragmento);
+				
+				var myModalExample = bootstrap.Modal.getOrCreateInstance(document.querySelector('#exampleModal'));
+				myModalExample.hide();
+				var myModal = bootstrap.Modal.getOrCreateInstance(document.querySelector('#modalExitosoError'));
+				myModal.show();
+	 			
+		});
+		
+		return false;
+	}
+
+	});
+
+	obtenerProductos = function() {
+	
+		$.get("/producto/buscar", {}, function(fragmento){
+			 	var newDoc = document.open("text/html", "replace");
+				newDoc.write(fragmento);
+				newDoc.close();
+			
+		});
+	
+	};
+	
+	obtenerProductosPaginados = function(pagina) {
+	
+
+	$.get("/producto/buscarPaginado", {page: pagina}, function( fragmento ) {
+ 			$("#resultado").replaceWith(fragmento);
+		});
+	};
     
     
    });
