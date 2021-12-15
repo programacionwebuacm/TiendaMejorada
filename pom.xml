@@ -12,11 +12,11 @@
 	<groupId>mx.edu.uacm</groupId>
 	<artifactId>TiendaMejorada</artifactId>
 	<version>1.0</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>TiendaMejorada</name>
 	<description>Apliacion web basada en spring boot conexion a db cruda</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>8</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
